@@ -4,7 +4,7 @@ The package defines a set of tool to access the annotated data we collected for 
 
 The dataset contains 2 types of files, the annotation csv file and the gallery csv file. 
 
-##The annotation file
+#### The annotation file
 
 The annotation file contains the source product, target product, non-target product and the language feedback provided by the annotator when they wanted to buy the target product but provided with the source product. For each product, we will provide with one ASIN (Product ID) and one image ID. Note, one product may have multiple product images. The image ID we shown in the csv file is the one we showed to the annotator. 
 
@@ -24,7 +24,7 @@ To visualize the annotation with a html file (randomly select n=100). Note that 
 python ./download_tool/html_visualization_csv.py -o <output_html_path> -i <annotation_csv_path> -n 100
 ```
 
-##The gallery image file
+#### The gallery image file
 
 The gallery file contains a list of gallery images with ASIN and Image ID. 
 
