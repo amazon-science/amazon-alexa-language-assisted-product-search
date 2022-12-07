@@ -38,4 +38,28 @@ To download the gallery images, download the gallery csv file and run following 
 python ./download_tool/data_download.py -o <output_path> -i <gallery_csv_path> -t gallery_csv
 ```
 
+#### The query file
+
+The query file is a jsonl file. Each line contains one query (a product and all three feedbacks from the annotator), and a set of candidate products.
+
+```
+{
+ "index": 1,
+ "source_pid": "31DIXIgC5wL",
+ "feedback1": "with a grey dress pant",
+ "feedback2": "with side button placket waistband",
+ "feedback3": "with a taper leg",
+ "candidates": [
+  {"candidate_pid": "71sq8PHKCeL"},
+  {"candidate_pid": "41qOjyIs8YL"}
+ ]
+}
+```
+
+To download the query images, download the gallery csv file and run following code in ./src
+
+```
+python ./download_tool/data_download.py -o <output_path> -i <query_jsonl_path> -t qe_jsonl
+```
+
 > :warning: For any issue and question, please contact Xu Zhang(xzhnamz@amazon.com), Sanqiang Zhao(sanqiang@amazon.com) or Skyler Zheng(nzhengji@amazon.com). 
