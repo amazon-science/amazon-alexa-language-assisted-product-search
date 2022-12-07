@@ -1,4 +1,4 @@
-## 2022 Amazon Alexa Language Assisted Product Search Challenge
+##2022 Amazon Alexa Language Assisted Product Search Challenge
 
 The package defines a set of tool to access the annotated data we collected for 2022 Amazon Alexa language-assisted product search challenge as well as the baseline method. Please check the detail of the challenge and the dataset [here](https://eval.ai/web/challenges/challenge-page/1845/overview). 
 
@@ -39,6 +39,31 @@ To download the gallery images, download the gallery csv file and run following 
 ```
 python ./download_tool/data_download.py -o <output_path> -i <gallery_csv_path> -t gallery_csv
 ```
+
+#### The query file
+
+The query file is a jsonl file. Each line contains one query (a product and all three feedbacks from the annotator), and a set of candidate products.
+
+```
+{
+ "index": 1,
+ "source_pid": "31DIXIgC5wL",
+ "feedback1": "with a grey dress pant",
+ "feedback2": "with side button placket waistband",
+ "feedback3": "with a taper leg",
+ "candidates": [
+  {"candidate_pid": "71sq8PHKCeL"},
+  {"candidate_pid": "41qOjyIs8YL"}
+ ]
+}
+```
+
+To download the query images, download the gallery csv file and run following code in ./src
+
+```
+python ./download_tool/data_download.py -o <output_path> -i <query_jsonl_path> -t qe_jsonl
+```
+
 
 ###Baseline
 To run the baseline, please take a look at the [README](src/VAL_product_search/README) file in the baseline directory. 
