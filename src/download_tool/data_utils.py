@@ -118,8 +118,12 @@ def download_url(url_filename):
     os.makedirs(dir_name, exist_ok=True)
 
     # Get data and save to hard disk
-    r = requests.get(url, stream=True)
-    if r.status_code == requests.codes.ok:
-        with open(filename, "wb") as fout:
-            for chunk in r.iter_content(chunk_size=1024):
-                fout.write(chunk)
+    try:
+        r = requests.get(url, stream=True)
+        if r.status_code == requests.codes.ok:
+            with open(filename, "wb") as fout:
+                for chunk in r.iter_content(chunk_size=1024):
+                    fout.write(chunk)
+    except Exception as e:
+        # If url does not exist, skip.
+        print(str(e))
