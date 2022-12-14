@@ -1,10 +1,12 @@
-## 2022 Amazon Alexa Language Assisted Product Search Challenge
+##2022 Amazon Alexa Language Assisted Product Search Challenge
 
-The package defines a set of tool to access the annotated data we collected for 2022 Amazon Alexa language-assisted product search challenge. Please check the detail of the challenge and the dataset [here](https://eval.ai/web/challenges/challenge-page/1845/overview).
+The package defines a set of tool to access the annotated data we collected for 2022 Amazon Alexa language-assisted product search challenge as well as the baseline method. Please check the detail of the challenge and the dataset [here](https://eval.ai/web/challenges/challenge-page/1845/overview). 
+
+###Dataset
 
 The dataset contains 2 types of files, the annotation csv file and the gallery csv file. 
 
-#### The annotation file
+####The annotation file
 
 The annotation file contains the source product, target product, non-target product and the language feedback provided by the annotator when they wanted to buy the target product but provided with the source product. For each product, we will provide with one ASIN (Product ID) and one image ID. Note, one product may have multiple product images. The image ID we shown in the csv file is the one we showed to the annotator. 
 
@@ -24,7 +26,7 @@ To visualize the annotation with a html file (randomly select n=100). Note that 
 python ./download_tool/html_visualization_csv.py -o <output_html_path> -i <annotation_csv_path> -n 100
 ```
 
-#### The gallery image file
+####The gallery image file
 
 The gallery file contains a list of gallery images with ASIN and Image ID. 
 
@@ -61,5 +63,9 @@ To download the query images, download the gallery csv file and run following co
 ```
 python ./download_tool/data_download.py -o <output_path> -i <query_jsonl_path> -t qe_jsonl
 ```
+
+
+###Baseline
+To run the baseline, please take a look at the [README](src/VAL_product_search/README) file in the baseline directory. 
 
 > :warning: For any issue and question, please contact Xu Zhang(xzhnamz@amazon.com), Sanqiang Zhao(sanqiang@amazon.com) or Skyler Zheng(nzhengji@amazon.com). 
