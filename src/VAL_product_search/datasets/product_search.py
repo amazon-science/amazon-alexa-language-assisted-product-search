@@ -68,6 +68,7 @@ class product_search:
     self.source_files =[]
     self.target_files = []
     self.modify_texts = []
+    self.num_modifiable_imgs = 0
 
     filename = self.filename
     file = open(filename, "r")
@@ -85,6 +86,7 @@ class product_search:
       self.target_files += [os.path.join(self.path, line[1])]
       line[2] = line[2].strip()
       self.modify_texts += [self.caption_post_process(s=line[2])]
+      self.num_modifiable_imgs += 1
 
   def random_shuffle_pairs_(self):
     """Randomly shuffles the source-target pairs (only for training)
