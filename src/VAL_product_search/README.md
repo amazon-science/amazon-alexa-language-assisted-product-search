@@ -42,7 +42,7 @@ git clone --recurse-submodules https://github.com/alexa/amazon-alexa-language-as
 * 2. Download the annotation dataset and gallery images according to the instructions in the challenge [website](https://eval.ai/web/challenges/challenge-page/1845/overview). 
 	 - To download the query images for training, download the training gallery csv file (train\_gallery\_file.csv to ./src/VAL\_product\_search/datasets/data) and run following code in ./src
 		```
-		python download_tool/data_download.py -o ./VAL_product_search/datasets/data/gallery_image -i ./VAL_product_search/datasets/data/train_gallery_file.csv -t train_gallery_csv
+		python download_tool/data_download.py -o ./VAL_product_search/datasets/data/gallery_image -i ./VAL_product_search/datasets/data/train_gallery_file.csv -t gallery_csv
 		```
 
 	 - To download the query images for evaluation, download the evaluation gallery csv file (query\_file\_released.jsonl to ./src/VAL\_product\_search/datasets/data) and run following code in ./src
