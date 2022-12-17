@@ -73,17 +73,20 @@ class product_search:
     filename = self.filename
     file = open(filename, "r")
     lines = file.readlines()
+
     for line in lines:
       line = line.split(';')
-      if 'dev' in filename and '/' in line[0]:
-        filename = os.path.join(self.path, line[0].split('/')[1])
+      if '/' in line[0]:
+        source_filename = os.path.join(self.path, line[0].split('/')[1])
+        target_filename = os.path.join(self.path, line[1].split('/')[1])
       else:
-        filename = os.path.join(self.path, line[0])
-      if not os.path.isfile(filename):
-        print(filename)
+        source_filename = os.path.join(self.path, line[0])
+        target_filename = os.path.join(self.path, line[1])
+      if not os.path.isfile(source_filename):
+        print("Missing source file: ", source_filename)
         continue
-      self.source_files += [filename]
-      self.target_files += [os.path.join(self.path, line[1])]
+      self.source_files += [source_filename]
+      self.target_files += [target_filename]
       line[2] = line[2].strip()
       self.modify_texts += [self.caption_post_process(s=line[2])]
       self.num_modifiable_imgs += 1
@@ -114,7 +117,6 @@ class product_search:
     """
 
     all_files = self.source_files + self.target_files
-
     # get unique images
     self.database = list(set(all_files))
     self.database = sorted(self.database)
