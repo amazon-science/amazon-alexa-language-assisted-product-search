@@ -1,6 +1,6 @@
 ##2022 Amazon Alexa Language Assisted Product Search Challenge
 
-The package defines a set of tool to access the annotated data we collected for 2022 Amazon Alexa language-assisted product search challenge as well as the baseline method. Please check the detail of the challenge and the dataset [here](https://eval.ai/web/challenges/challenge-page/1845/overview). 
+The package defines a set of tool to access the annotated data we collected for 2022 Amazon Alexa language-assisted product search challenge as well as the baseline method. Please check the detail of the challenge and the dataset [here](https://eval.ai/web/challenges/challenge-page/1845/overview). The dataset is released under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license.
 
 ###Dataset
 
