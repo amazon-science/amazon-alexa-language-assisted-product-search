@@ -38,8 +38,8 @@ class product_search:
     """Get all the texts from the caption pairs file
 
     Args:
-      filename (str): Path for the file that has the caption pairs,
-        for example: filename = "datasets/product_search/captions_pairs/product_search-cap-train_3_feedbacks.txt"
+      filename (str): Path for the file that has the image and caption pairs,
+        for example: filename = "datasets/product_search/captions_pairs/product_search_train.txt"
 
     Returns:
       self.all_texts (list): A list of all the texts
@@ -63,12 +63,13 @@ class product_search:
       self.source_files: a list of source image files
       self.target_files: a list of target image files
       self.modify_texts: the feedbacks after post-processing
+      self.num_queries: the number of queries
 
     """
     self.source_files =[]
     self.target_files = []
     self.modify_texts = []
-    self.num_modifiable_imgs = 0
+    self.num_queries = 0
 
     filename = self.filename
     file = open(filename, "r")
@@ -79,17 +80,21 @@ class product_search:
       if '/' in line[0]:
         source_filename = os.path.join(self.path, line[0].split('/')[1])
         target_filename = os.path.join(self.path, line[1].split('/')[1])
+        if not os.path.isfile(target_filename):
+          print("Missing target file: ", source_filename)
+          continue
       else:
         source_filename = os.path.join(self.path, line[0])
         target_filename = os.path.join(self.path, line[1])
       if not os.path.isfile(source_filename):
         print("Missing source file: ", source_filename)
         continue
+
       self.source_files += [source_filename]
       self.target_files += [target_filename]
       line[2] = line[2].strip()
       self.modify_texts += [self.caption_post_process(s=line[2])]
-      self.num_modifiable_imgs += 1
+      self.num_queries += 1
 
   def random_shuffle_pairs_(self):
     """Randomly shuffles the source-target pairs (only for training)
@@ -97,7 +102,7 @@ class product_search:
     Returns:
       self.source_files: randomly shuffled self.source_files
       self.target_files: randomly shuffled self.target_files
-      self.modify_texts: randomly shuffled self.modify_texts
+      self.texts: randomly shuffled self.modify_texts
 
     """
     shuffle_idx = list(range(len(self.source_files)))

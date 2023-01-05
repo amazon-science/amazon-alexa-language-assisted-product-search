@@ -17,8 +17,8 @@ from tensorflow.contrib.data import batch_and_drop_remainder
 # Govern training
 ##############################################################################################
 tf.app.flags.DEFINE_string(
-    'train_filename', 'datasets/product_search/captions_pairs/product_search-cap-train_3_feedbacks.txt',
-    'path to the annotation file for vocabulary extraction')
+    'train_filename', 'datasets/product_search/captions_pairs/product_search_train.txt',
+    'path to the annotation file for training')
 tf.app.flags.DEFINE_integer(
     'image_size', 256, "image size (height, width) in pixels.")
 tf.app.flags.DEFINE_integer(
@@ -80,7 +80,7 @@ tf.app.flags.DEFINE_string(
 tf.app.flags.DEFINE_string(
     'checkpoint_dir_stage1', None, 'directory to save the checkpoint.')
 tf.app.flags.DEFINE_string(
-    'pretrain_checkpoint_dir', 'pretrain_model/resnet_v2_50/resnet_v2_50.ckpt',
+    'pretrain_checkpoint_dir', 'pretrained_model/resnet_v2_50/resnet_v2_50.ckpt',
     'directory where the pretrained model is saved.')
 
 ##############################################################################################
@@ -110,7 +110,21 @@ expand_dims = lambda x: tf.expand_dims(tf.expand_dims(x, 1), 1)
 pairwise_distance = lambda f1, f2, dim: tf.reduce_sum(tf.square(tf.subtract(f1, f2)), dim)
 
 def _build_model(source_images, target_images, modify_texts, seqlengths, vocab_size):
-    """ define model & loss """
+    """ define model & loss
+
+    Args:
+      source_images (str):
+      target_images (list):
+      modify_texts : processed texts,
+      seqlengths:
+      vocab_size: the vocabulary size
+
+
+    Returns:
+      total_loss:
+      losses:
+
+    """
     with tf.variable_scope(tf.get_variable_scope()):
         cnn_features_source = image_model_ml(source_images)
 
@@ -155,7 +169,7 @@ def main():
     trainset.generate_queries_()
     vocab = vocabulary.SimpleVocab()
     all_texts = trainset.get_all_texts(filename=FLAGS.train_filename)
-    num_modif = trainset.num_modifiable_imgs
+    num_samples = trainset.num_queries
     max_steps = FLAGS.train_length
     for text in all_texts:
         vocab.add_text_to_vocab(text)
@@ -163,12 +177,12 @@ def main():
         print('Remove rare words')
         vocab.threshold_rare_words()
     vocab_size = vocab.get_size()
-    print("Number of samples = {}. Number of words = {}.".format(num_modif, vocab_size))
+    print("Number of samples = {}. Number of words = {}.".format(num_samples, vocab_size))
 
     with tf.Graph().as_default():
         dataset = tf.data.Dataset.from_tensor_slices(
             (trainset.source_files, trainset.target_files, trainset.modify_texts))
-        dataset = dataset.prefetch(FLAGS.batch_size).shuffle(num_modif).map(train_pair_image_parse_function,
+        dataset = dataset.prefetch(FLAGS.batch_size).shuffle(num_samples).map(train_pair_image_parse_function,
                                                                             num_parallel_calls=FLAGS.threads).apply(
             batch_and_drop_remainder(FLAGS.batch_size)).repeat()
         data_iterator = dataset.make_one_shot_iterator()

@@ -14,8 +14,8 @@ WORD_SIZE=300
 STAGE1_DIR='save_model/product_search/val_resnet_v2_50_ml/checkpoints_eval'
 DATA_DIR='datasets/data/product_search'
 FEAT_DIR='save_model/product_search/val_resnet_v2_50_ml/image_features'
-FILENAME_GALLERY='datasets/product_search/captions_pairs/product_search-cap-dev_gallery_images.txt'
-FILENAME_QUERY='datasets/product_search/captions_pairs/product_search-cap-dev_queries.txt'
+FILENAME_GALLERY='datasets/product_search/captions_pairs/product_search_gallery_images.txt'
+FILENAME_QUERY='datasets/product_search/captions_pairs/product_search_dev_queries.txt'
 
 python extract_features.py \
   --checkpoint_dir=${STAGE1_DIR} \
