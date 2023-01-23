@@ -15,9 +15,9 @@ import math
 from extract_features_val import _text_model, _image_model, _image_modify_model
 
 tf.app.flags.DEFINE_string(
-  'dev_filename', 'datasets/product_search/captions_pairs/product_search-cap-dev_gallery_images.txt', 'path to the annotation files for feature extractions for gallery images and queries')
+  'dev_filename', 'datasets/product_search/captions_pairs/product_search_gallery_images.txt', 'path to the annotation file of gallery images for feature extractions')
 tf.app.flags.DEFINE_string(
-  'train_filename', 'datasets/product_search/captions_pairs/product_search-cap-train_3_feedbacks.txt', 'path to the annotation file for vocabulary extraction')
+  'train_filename', 'datasets/product_search/captions_pairs/product_search_train.txt', 'path to the training annotation file for vocabulary extraction')
 FLAGS = tf.app.flags.FLAGS
 
 def main():
