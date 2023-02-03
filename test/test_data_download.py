@@ -137,6 +137,13 @@ def test_parse_qe_jsonl():
                     },
                 ],
             },
+            {
+                "source_asin": "B078KHB3G7",
+                "source_pid": "81010ZkFvBL",
+                "utterance1": "a",
+                "utterance2": "b",
+                "utterance3": "c"
+            },
         ]
 
         file_handle = MagicMock()
@@ -169,6 +176,10 @@ def test_parse_qe_jsonl():
             (
                 "https://m.media-amazon.com/images/I/A1eVxp1fToL.jpg",
                 "test/A1eVxp1fToL.jpg",
+            ),
+            (
+                "https://m.media-amazon.com/images/I/81010ZkFvBL.jpg",
+                "test/81010ZkFvBL.jpg",
             ),
         ]
 
@@ -227,3 +238,11 @@ def test_data_download():
         data_download.data_download("test", "test", "annotation_csv", 3)
         data_download.data_download("test", "test", "gallery_csv", -1)
         data_download.data_download("test", "test", "qe_jsonl", -1)
+
+
+if __name__ == '__main__':
+    test_data_download()
+    test_parse_qe_jsonl()
+    test_parse_gallery_csv()
+    test_parse_csv_annotation()
+    test_download_url()
