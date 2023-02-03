@@ -97,10 +97,11 @@ def parse_qe_jsonl(input_file, output_path):
             download_list.append((url, os.path.join(output_path, f"{pid}.jpg")))
 
             # Extract information for all candidates.
-            for candidate in data_dict["candidates"]:
-                pid = candidate["candidate_pid"]
-                url = f"https://m.media-amazon.com/images/I/{pid}.jpg"
-                download_list.append((url, os.path.join(output_path, f"{pid}.jpg")))
+            if "candidates" in data_dict:
+                for candidate in data_dict["candidates"]:
+                    pid = candidate["candidate_pid"]
+                    url = f"https://m.media-amazon.com/images/I/{pid}.jpg"
+                    download_list.append((url, os.path.join(output_path, f"{pid}.jpg")))
 
     return download_list
 
