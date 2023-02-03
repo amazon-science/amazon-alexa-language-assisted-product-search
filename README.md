@@ -34,6 +34,12 @@ The gallery file contains a list of gallery images with ASIN and Image ID.
 | :---:   | :-: | 
 | B076XHGMDF | 51vqFfngUiL |
 
+For evaluation the gallary file has no ASIN, 
+
+| Image ID | 
+| :---:   |
+| 51vqFfngUiL |
+
 To download the gallery images, download the gallery csv file and run following code in ./src
 
 ```
@@ -55,6 +61,18 @@ The query file is a jsonl file. Each line contains one query (a product and all 
   {"candidate_pid": "71sq8PHKCeL"},
   {"candidate_pid": "41qOjyIs8YL"}
  ]
+}
+```
+
+For evaluation, the condidate is not provided. 
+
+```
+{
+ "index": 1,
+ "source_pid": "31DIXIgC5wL",
+ "feedback1": "with a grey dress pant",
+ "feedback2": "with side button placket waistband",
+ "feedback3": "with a taper leg"
 }
 ```
 
