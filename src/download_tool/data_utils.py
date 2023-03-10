@@ -125,6 +125,8 @@ def download_url(url_filename):
             with open(filename, "wb") as fout:
                 for chunk in r.iter_content(chunk_size=1024):
                     fout.write(chunk)
+        else:
+            print(r.status_code)
     except Exception as e:
         # If url does not exist, skip.
         print(str(e))

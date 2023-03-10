@@ -8,7 +8,7 @@ import os
 import click
 from download_tool import data_utils
 from tqdm import tqdm
-
+import warnings
 
 def data_download(
     output_path: str,
@@ -37,6 +37,9 @@ def data_download(
         raise IOError(f"{input_type} is not supported.")
 
     threads_count = threads_count if threads_count > 0 else os.cpu_count()
+    if threads_count > 8:
+        warnings.warn(f"Using {threads_count} threads for downloading. \
+                      We recommend setting threads-count <= 8 to avoid connecting issue.")
 
     with multiprocessing.Pool(threads_count) as pool:
         for _ in tqdm(
