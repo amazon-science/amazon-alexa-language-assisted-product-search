@@ -82,8 +82,14 @@ To download the query images, download the gallery csv file and run following co
 python ./download_tool/data_download.py -o <output_path> -i <query_jsonl_path> -t qe_jsonl
 ```
 
-
 ###Baseline
 To run the baseline, please take a look at the [README](src/VAL_product_search/README) file in the baseline directory. 
+
+###Sample Submission
+src/submission folder provides a sample code to generate a valid pkl for evaluation. Run following code in ./src. To download the evaluation_gallery_file and the evaluation query_file, please refer to the [challenge website](https://eval.ai/web/challenges/challenge-page/1845/overview).
+
+```
+python ./submission/generate_random_submission.py -o <output_pkl_path> -g <evaluation_gallery_file> -q ~/<evaluation_query_file>
+```
 
 > :warning: For any issue and question, please contact Xu Zhang(xzhnamz@amazon.com), Sanqiang Zhao(sanqiang@amazon.com) or Skyler Zheng(nzhengji@amazon.com). 

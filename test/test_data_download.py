@@ -236,7 +236,7 @@ def test_data_download():
         mock_pool.return_value = pool_handle
 
         data_download.data_download("test", "test", "annotation_csv", 3)
-        data_download.data_download("test", "test", "gallery_csv", -1)
+        data_download.data_download("test", "test", "gallery_csv", 10)
         data_download.data_download("test", "test", "qe_jsonl", -1)
 
 
